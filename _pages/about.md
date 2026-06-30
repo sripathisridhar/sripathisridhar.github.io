@@ -24,14 +24,6 @@ Outside of research, I'm a vocalist and drummer, and I've performed across ensem
 See my [publications](/publications/) or download my [CV](/files/cv.pdf). You can reach me at <span id="contact-email">(JavaScript required to view)</span>.
 
 <script>
-(function () {
-  var el = document.getElementById('contact-email');
-  if (!el) return;
-  // Assembled at runtime from split pieces so the address never appears,
-  // contiguous, in the page source or pre-JS DOM (defeats simple scrapers).
-  // Plain text only — selectable/copiable but deliberately NOT a clickable mailto link.
-  var user = ['s', 's', '6', '4', '5'].join('');
-  var domain = ['njit', 'edu'].join('.');
-  el.textContent = user + String.fromCharCode(64) + domain;
-})();
+/* Email assembled at runtime from split pieces (no contiguous address in source); plain text, not a mailto link. Single line + block comments only, so the theme's compress layout (which strips newlines) can't break it. */
+(function(){var el=document.getElementById('contact-email');if(!el){return;}var user=['s','s','6','4','5'].join('');var domain=['njit','edu'].join('.');el.textContent=user+String.fromCharCode(64)+domain;})();
 </script>
