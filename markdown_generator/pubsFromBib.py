@@ -26,21 +26,12 @@ import re
 
 #todo: incorporate different collection types rather than a catch all publications, requires other changes to template
 publist = {
-    "proceeding": {
-        "file" : "proceedings.bib",
-        "venuekey": "booktitle",
-        "venue-pretext": "In the proceedings of ",
-        "collection" : {"name":"publications",
-                        "permalink":"/publication/"}
-        
-    },
-    "journal":{
+    "pub": {
         "file": "pubs.bib",
-        "venuekey" : "journal",
-        "venue-pretext" : "",
-        "collection" : {"name":"publications",
-                        "permalink":"/publication/"}
-    } 
+        "venue-pretext": "",
+        "collection": {"name": "publications",
+                       "permalink": "/publication/"}
+    }
 }
 
 html_escape_table = {
@@ -105,8 +96,9 @@ for pubsource in publist:
             #citation title
             citation = citation + "\"" + html_escape(b["title"].replace("{", "").replace("}","").replace("\\","")) + ".\""
 
-            #add venue logic depending on citation type
-            venue = publist[pubsource]["venue-pretext"]+b[publist[pubsource]["venuekey"]].replace("{", "").replace("}","").replace("\\","")
+            #add venue logic depending on citation type (single bib file: detect per entry)
+            venuekey = "booktitle" if "booktitle" in b.keys() else "journal"
+            venue = publist[pubsource]["venue-pretext"]+b[venuekey].replace("{", "").replace("}","").replace("\\","")
 
             citation = citation + " " + html_escape(venue)
             citation = citation + ", " + pub_year + "."
@@ -135,7 +127,7 @@ for pubsource in publist:
                     md += "\npaperurl: '" + b["url"] + "'"
                     url = True
 
-            md += "\ncitation: '" + html_escape(citation) + "'"
+            md += "\ncitation: '" + citation + "'"
 
             md += "\n---"
 

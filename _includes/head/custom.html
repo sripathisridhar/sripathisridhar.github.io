@@ -2,13 +2,18 @@
 
 <!-- start custom head snippets -->
 
-<!-- Support for Academicons -->
-<link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"></noscript>
+<!-- Icon fonts loaded synchronously from CDN (CORS-enabled fonts that render on first paint) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
 
-<!-- Support for Font Awesome -->
- <link rel="preload" href="{{ base_path }}/assets/css/fontawesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ base_path }}/assets/css/fontawesome.css"></noscript>
+<!-- Always reserve the vertical scrollbar so page width (and the theme's responsive
+     font-size) stays identical between short and long pages.
+     Also hide the greedy-nav overflow toggle on widths where the few nav links always
+     fit (the theme leaves a phantom hamburger visible even with nothing to collapse). -->
+<style>
+  html { overflow-y: scroll; }
+  @media (min-width: 600px) { .greedy-nav > button { display: none !important; } }
+</style>
 
 <!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
 <link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/apple-touch-icon-180x180.png"/>
